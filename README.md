@@ -16,6 +16,9 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 ###授权过程
 1. [需要向我们提交的资料](signup.md)
 2. [测试和正式环境的地址](address.md)
+3. [请求 request_token](request_token.md)
+4. [请求 access_token](access_token.md)
+5.
 * 恶
 	* 先提供应用名，重定向地址，app首页，67px * 67px 图标，应用描述。
 	* 我们将分配给你接入 client_id 和 secret。
