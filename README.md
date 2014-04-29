@@ -2,7 +2,7 @@
 欢迎你加入 bong 开放平台的大部落，对于每一位开发者我们都倍感珍贵。不需要掌握硬件知识和拥有专业设备，你就可以学习和运用通过传感器全时监测所获得前所未有的海量身体数据，开发出真正把虚拟带入现实的各种有趣应用，并且通过这些应用去改善你所关心的人们的生活。第三方应用将内嵌到 bong iOS 和 Android 软件中，每一位 bong 用户均可以访问到这些应用。
 
 ###加入开发者计划
-任何对 bong 有兴趣的开发者都可以申请完全免费的开发者计划。加入的办法是发邮件到 **oliver@bong.cn**，主题写「加入开发者计划」并附上你的 portfolio。经过认证后，即可成为 bong 开放平台的开发者，获得授权开发者头衔，提前享受最新最火热的内测消息。我们更提供创意支持（用户投票的 bong 原型菜园），测试用户募集，用户调研，运营支持等全方位免费配套的服务，帮助你在快速成长的 bong 平台上获得成功。
+任何对 bong 有兴趣的开发者都可以申请完全免费的开发者计划。加入的办法是发邮件到 <oliver@bong.cn>，主题写「加入开发者计划」并附上你的 portfolio。经过认证后，即可成为 bong 开放平台的开发者，获得授权开发者头衔，提前享受最新最火热的内测消息。我们更提供创意支持（用户投票的 [bong 原型菜园](http://openbong.lofter.com)），测试用户募集，用户调研，运营支持等全方位免费配套的服务，帮助你在快速成长的 bong 平台上获得成功。
 
 
 ###关于bong
@@ -10,12 +10,12 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 
 
 ###OAuth 2 认证
-1. 名词说明
-	* 客户端：指的是你开发的第三方应用。
-	* 资源所有人：指的是授权用户。
-	* 资源服务端：指的是 bong 提供的 API。
-2. 授权流程
-	* ![](https://raw.githubusercontent.com/Ginshell/bongOpenPlatform/master/images/auth.png)
+####授权原理图示
+![](https://raw.githubusercontent.com/Ginshell/bongOpenPlatform/master/images/auth.png)
+
+###授权过程
+1. [需要向我们提交的资料](signup.md)
+* 恶
 	* 先提供应用名，重定向地址，app首页，67px * 67px 图标，应用描述。
 	* 我们将分配给你接入 client_id 和 secret。
 	* 测试平台 http://open-test.bong.cn，正式平台 http://open.bong.cn（以下同）
