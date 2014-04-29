@@ -20,44 +20,11 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 3. [请求 request_token](request_token.md)
 4. [请求 access_token](access_token.md)
 5. [用 refresh_token 重新请求 access_token](refresh_token.md)
-5.
-* 恶
-	* 先提供应用名，重定向地址，app首页，67px * 67px 图标，应用描述。
-	* 我们将分配给你接入 client_id 和 secret。
-	* 测试平台 http://open-test.bong.cn，正式平台 http://open.bong.cn（以下同）
-		* 请求方式： POST
-		* 请求授权： oauth/authorize
-			* 参数：client_id 应用对应的 id
-			* 参数：rediret_uri 应用的回调地址
-			* 例子：请求 https://open.bong.cn/oauth/authorize?client_id=hello_bong&redirect_uri=http://my.awesomeapp.com/bong
-			* 返回值
-				* code：返回码，用来接下来获取 access_token
-		* 获取授权： oauth/token
-			* 参数：client_id 同上
-			* 参数：redirect_uri 同上
-			* 参数：grant_type 必须为 "authorization_code"
-			* 参数：请求授权中获得的 code
-			* 例子：请求 https://open.bong.cn/oauth/token?client_id=hello_bong&grant_type=authorization_code&client_secret=dont_touch_it&redirect_uri=http://my.awesomeapp.com/bong&code=idontknow
-			* 返回值
-				* access_token: "i_got_the_token",
-				* token_type: "bearer",
-				* refresh_token: "you_need_to_store_this",
-				* expire_in: seconds,
-				* scope: "read",
-				* uid: "my_alternate_ego",
-				* refresh_token_expiration: "time_since_unix_begins"
-			* access_token 过期时间为 12 小时
-			* 使用 refresh_token 请求 access_token
-				* 参数：client_id
-				* 参数：client_secret
-				* 参数：grant_type
-				* 参数：refresh_token
-				* 返回值与获取授权的返回值相同
+6. [签名密钥](signature.md)
 
 ###API说明
-1. 名词说明
-	* bongday: bongday 不是自然天(0:00 到 24:00)。bongday 是指当日入睡点到第二天入睡点之间的时段，含有用户的睡眠和运动的数据。比如昨晚 11:30 分入睡，今天晚上 10:30 分入睡，那么 bongday 数据的开始就是从昨天晚上 11:30 到今天晚上 10:30，而不是自然天的昨天晚上 0:00 到今天晚上的 0:00。
-2. 运动数据接口
+1. [名词说明](api_term.md)
+2. [运动数据接口](api_sport.md)
 	* 说明：该接口返回某一个 bongday 的运动数据。每个人每天的运动数据是持续变化的，我们认为分为两大类，即bong（燃烧脂肪态）和非bong（相对静止态）。有了归类后，你就可以方便的对不同类型的运动进行归纳操作，从而制作出有趣的应用。因为 bong 不止识别运动静止态，还会进一步对不同的运动类型做出判断，以下会做详细说明。
 	* 调用方法
 		* 线上地址 https://open.bong.cn 测试环境 http://open-test.bong.cn
@@ -91,7 +58,7 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 		* 说明：非bong下共有2个子状态：
 			* 1、静坐：例如坐在椅子上办公。
 			* 2、散步：速度相当于走路。
-3. 天综合数据接口
+3. [天综合数据接口](api_sum.md)
 	* 说明：这个接口用于返回经过聚合了的bongday数据，只有一条，不分块。适合用来做统计类的应用。
 	* 调用方法：
 		* 调用地址 /1/bongday/dailysum/YYYYMMDD?uid=user_id_get_from_auth&access_token=token_get_from_auth
@@ -103,7 +70,7 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 		* Steps：该日的移动的步数综合，单位是步。 
 		* Distance：该日移动的总距离，单位是米。
 		* stillTime：该日的静坐时间总和，单位是秒。
-4. 睡眠数据接口
+4. [睡眠数据接口](api_sleep.md)
 	* 说明：这个接口获取用户每日的睡眠时长，质量评分，适合用做睡眠类应用。
 	* 调用方法
 		* 正常调用: /1/sleep/blocks/YYYYMMDD?uid=user_id_get_from_auth&access_token=token_get_from_auth
