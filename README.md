@@ -19,7 +19,7 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 2. [测试和正式环境的地址](address.md)
 3. [请求 request_token](request_token.md)
 4. [请求 access_token](access_token.md)
-5. [用 access_token 请求 request_token](request_token.md)
+5. [用 refresh_token 重新请求 access_token](refresh_token.md)
 5.
 * 恶
 	* 先提供应用名，重定向地址，app首页，67px * 67px 图标，应用描述。
