@@ -2,16 +2,16 @@
 这个接口获取用户每日的睡眠时长，质量评分，适合用做睡眠类应用。
 ###调用方法
 #####正常调用:
-调用地址： /1/sleep/blocks/YYYYMMDD?uid=user_id_get_from_auth&access_token=token_get_from_auth
+调用地址： /1/sleep/blocks/YYYYMMDD?uid=uid&access_token=token_get_from_auth
 
 参数|说明
 ---|---
 YYYYMMDD|查询的当日，例子 20140101
-uid|认证返回的 user_id
+uid|认证返回的 uid
 access_token|认证返回的 token
 
 #####jsonp: 
-调用地址： /1/sleep/blocks/YYYYMMDD/jsonp?uid=user_id_get_from_auth&callback=func_name&access_token=token_get_from_auth
+调用地址： /1/sleep/blocks/YYYYMMDD/jsonp?uid=uid&callback=func_name&access_token=token_get_from_auth
 
 参数|说明
 ---|---
