@@ -24,7 +24,7 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 
 ###API说明
 1. [名词说明](api_term.md)
-2. [运动数据接口](api_sport.md)
+2. [天详细数据接口](api_bongday.md)
 3. [天综合数据接口](api_sum.md)
 4. [睡眠数据接口](api_sleep.md)
 				
