@@ -13,7 +13,11 @@ timestamp|时间戳，用于增强安全性，防止过时的连接
 如：source=bong&timestamp=1398594572050uid=22088882811149902693
 在生成的字符串后加上签名秘钥 xxx（申请应用后会获得该秘钥） 得到 source=bong&timestamp=1398594572050uid=22088882811149902693xxx
 再对字符串进行 md5 加密，得到 sign，跟请求参数中的 sign做对比
-示例：开发者提交的 首页url 为：http://developer.com/dev?source=bong
+
+示例：
+
+开发者提交的 首页url 为：http://developer.com/dev?source=bong
+
 最后请求开发者应用的请求为：http://developer.com/dev?sign=e5abb5a1337f70f5a52e052c93e01c0e&uid=22088882811149902693&timestamp=1398594572050&source=bong
 
 
