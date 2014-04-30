@@ -4,25 +4,95 @@
 ###调用方法
 
 #####正常调用 
-地址：/1/bongday/blocks/YYYYMMDD?uid=user_id_get_from_oauth&access_token=token_get_from_oauth
+地址：/1/bongday/blocks/yyyymmdd?uid=uid&access_token=token_get_from_oauth
 
 参数|说明
 ---|---
-YYYYMMDD|查询的那一日，例子 20140101
-uid|认证中返回的 user_id
+yyyymmdd|查询的那一日，例子 20140101
+uid|认证中返回的 uid
 access_token|认证中返回的 token
 
 #####jsonp 调用 
-地址： /1/bongday/blocks/20140419/jsonp?uid=user_id_get_from_oauth&callback=func_name&access_token=token_get_from_oauth
+地址： /1/bongday/blocks/yyyymmdd/jsonp?uid=uid&callback=func_name&access_token=token_get_from_oauth
 
 参数|说明
 ---|---
-YYYYMMDD|同上
+yyyymmdd|同上
 uid|同上
 callback|回调函数名
 access_token|同上
 
 ###返回数据
+
+```json
+{
+    "code": "200", 
+    "message": "成功标示!", 
+    "value": [
+        {
+            "startTime": "2014-04-29 09:40:00", 
+            "endTime": "2014-04-29 12:20:00", 
+            "type": 5
+        }, 
+        {
+            "startTime": "2014-04-29 12:21:00", 
+            "endTime": "2014-04-29 16:12:00", 
+            "type": 1, 
+            "dsNum": 194, 
+            "lsNum": 38, 
+            "wakeNum": 0, 
+            "wakeTimes": 0, 
+            "score": "2.00"
+        }, 
+        {
+            "startTime": "2014-04-29 16:13:00", 
+            "endTime": "2014-04-29 20:41:00", 
+            "type": 4
+        }, 
+        {
+            "startTime": "2014-04-29 20:42:00", 
+            "endTime": "2014-04-29 21:43:00", 
+            "type": 2, 
+            "distance": "157.32", 
+            "calories": "58.95", 
+            "steps": 226, 
+            "subType": 1, 
+        }, 
+        {
+            "startTime": "2014-04-29 21:44:00", 
+            "endTime": "2014-04-29 22:02:00", 
+            "type": 2, 
+            "distance": "0.00", 
+            "calories": "22.66", 
+            "steps": 0, 
+            "subType": 1, 
+        }, 
+        {
+            "startTime": "2014-04-29 22:03:00", 
+            "endTime": "2014-04-29 22:16:00", 
+            "type": 3, 
+            "distance": "497.71", 
+            "calories": "75.25", 
+            "steps": 715, 
+            "subType": 2, 
+            "actTime": 544, 
+            "nonActTime": 296
+        }, 
+        {
+            "startTime": "2014-04-29 22:17:00", 
+            "endTime": "2014-04-29 22:27:00", 
+            "type": 3, 
+            "distance": "44.55", 
+            "calories": "29.02", 
+            "steps": 65, 
+            "subType": 1, 
+            "actTime": 300, 
+            "nonActTime": 360
+        }
+    ]
+}
+```
+
 参数|说明
 ---|---
 startTime| 该区块的开始时间，例如，用户早起跑步的跑步区块从 8:31 开始。
