@@ -16,11 +16,15 @@ access_token|认证返回的 token
     "code": "200", 
     "message": "成功标示!", 
     "value": {
-        "calories": "1440.33", 
-        "steps": 6762, 
-        "distance": "4613.75", 
-        "stillTime": 43766, 
-        "date": "20140427"
+        "calories": "349.96", 
+        "steps": 2103, 
+        "distance": "1431.88", 
+        "stillTime": 3892, 
+        "actPoint": 0, 
+        "sleepNum": 489, 
+        "dsNum": 131, 
+        "sleepTimes": 1, 
+        "date": "20140506"
     }
 }
 ```
@@ -31,4 +35,7 @@ calories|该日运动消耗的热量总和，单位是千焦耳。
 cteps|该日的移动的步数综合，单位是步。 
 distance|该日移动的总距离，单位是米。
 stillTime|该日的静坐时间总和，单位是秒。
-date|yyyymmdd,日期
+sleepNum|总睡眠时长,单位是分钟
+dsNum|深睡眠时长,单位是分钟
+sleepTimes|睡眠次数
+date|yyyymmdd,日期。
