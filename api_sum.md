@@ -16,15 +16,16 @@ access_token|认证返回的 token
     "code": "200", 
     "message": "成功标示!", 
     "value": {
-        "calories": "349.96", 
-        "steps": 2103, 
-        "distance": "1431.88", 
-        "stillTime": 3892, 
+        "calories": "1593.05", 
+        "steps": 6500, 
+        "distance": "4463.28", 
+        "stillTime": 47460, 
         "actPoint": 0, 
-        "sleepNum": 489, 
-        "dsNum": 131, 
-        "sleepTimes": 1, 
-        "date": "20140506"
+        "sleepNum": 0, 
+        "dsNum": 0, 
+        "sleepTimes": 0, 
+        "complete": 1, 
+        "date": "20140503"
     }
 }
 ```
@@ -38,4 +39,5 @@ stillTime|该日的静坐时间总和，单位是秒。
 sleepNum|总睡眠时长,单位是分钟
 dsNum|深睡眠时长,单位是分钟
 sleepTimes|睡眠次数
+complete|该日数据是否完整。  0：不完整    1：完整
 date|yyyymmdd,日期。
