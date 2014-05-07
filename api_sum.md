@@ -16,9 +16,9 @@ access_token|认证返回的 token
     "code": "200", 
     "message": "成功标示!", 
     "value": {
-        "calories": "1593.05", 
+        "calories": 1593.05, 
         "steps": 6500, 
-        "distance": "4463.28", 
+        "distance": 4463.28, 
         "stillTime": 47460, 
         "actPoint": 0, 
         "sleepNum": 0, 
