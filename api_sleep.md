@@ -34,7 +34,7 @@ access_token|同上
             "lsNum": 384, 
             "wakeNum": 0, 
             "wakeTimes": 0, 
-            "score": "3.00"
+            "score": 3.00
         }
     ]
 }
