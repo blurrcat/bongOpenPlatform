@@ -15,18 +15,20 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 ![](https://raw.githubusercontent.com/Ginshell/bongOpenPlatform/master/images/auth.png)
 
 ###授权过程
-1. [需要向我们提交的资料](signup.md)
-2. [测试和正式环境的地址](address.md)
-3. [请求 request_token](request_token.md)
-4. [请求 access_token](access_token.md)
-5. [用 refresh_token 重新请求 access_token](refresh_token.md)
-6. [签名密钥](signature.md)
+1. [需要向我们提交的资料](docs/signup.md)
+2. [测试和正式环境的地址](docs/address.md)
+3. [请求 request_token](docs/request_token.md)
+4. [请求 access_token](docs/access_token.md)
+5. [用 refresh_token 重新请求 access_token](docs/refresh_token.md)
+6. [签名密钥](docs/signature.md)
 
 ###API说明
-1. [名词说明](api_term.md)
-2. [天详细数据接口](api_bongday.md)
-3. [天综合数据接口](api_sum.md)
-4. [睡眠数据接口](api_sleep.md)
+1. [名词说明](docs/api_term.md)
+2. [天详细数据接口](docs/api_bongday.md)
+3. [天综合数据接口](docs/api_sum.md)
+4. [睡眠数据接口](docs/api_sleep.md)
+5. [用户头像接口](docs/avatar.md)
+6. [用户资料接口](docs/userinfo.md)
 				
 ###接入流程
 1. 提交应用。认证开发者需要提交的内容有：应用名称，重定向 URI，APP 主页，图标，应用说明（OAuth 2）。
