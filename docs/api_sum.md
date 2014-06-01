@@ -33,7 +33,7 @@ access_token|认证返回的 token
 参数|说明
 ---|---
 calories|该日运动消耗的热量总和，单位是千焦耳。
-cteps|该日的移动的步数综合，单位是步。 
+steps|该日的移动的步数综合，单位是步。 
 distance|该日移动的总距离，单位是米。
 stillTime|该日的静坐时间总和，单位是秒。
 sleepNum|总睡眠时长,单位是分钟
