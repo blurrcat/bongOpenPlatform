@@ -143,7 +143,7 @@ wakeTimes|清醒次数，单位：次
 score|睡眠质量评分
 
 
-### 获取多日数据
+### 获取多日数据（最多7日）
 
 #####正常调用
 地址 1/bongday/blocks/yyyymmdd/n?uid=uid&access_token=access_token
