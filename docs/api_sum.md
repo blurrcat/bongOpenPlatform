@@ -41,3 +41,15 @@ dsNum|深睡眠时长,单位是分钟
 sleepTimes|睡眠次数
 complete|该日数据是否完整。  0:不完整    1:完整
 date|yyyymmdd,日期。
+
+
+### 获取多日数据（最多15天）
+
+#####正常调用
+地址 1/bongday/dailysum/yyyymmdd/n?uid=uid&access_token=access_token
+#####jsonp 调用
+地址 1/bongday/dailysum/yyyymmdd/n/jsonp?uid=uid&access_token=access_token
+
+#####说明
+yyyymmmdd: 起始日期。例子：20140313
+n: 从起始日期开始的天书。例子：7
