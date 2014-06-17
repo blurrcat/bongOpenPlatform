@@ -50,3 +50,15 @@ lsNum|浅睡眠时长，单位：分钟
 wakeNum|清醒时长，单位：分钟
 wakeTimes|清醒次数，单位：次
 score|睡眠质量评分
+
+
+### 获取多日数据
+
+#####正常调用
+地址 1/bongday/dailysum/yyyymmdd/n?uid=uid&access_token=access_token
+#####jsonp 调用
+地址 1/bongday/dailysum/yyyymmdd/n/jsonp?uid=uid&access_token=access_token
+
+#####说明
+yyyymmmdd: 起始日期。例子：20140313
+n: 从起始日期开始的天书。例子：7
