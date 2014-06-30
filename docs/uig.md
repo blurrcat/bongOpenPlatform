@@ -16,7 +16,7 @@
 3. 菜单：有明确指示。
 
 ####布局
-![](https://raw.githubusercontent.com/Ginshell/bongOpenPlatform/master/images/mainui.jpg)
+![](https://raw.githubusercontent.com/Ginshell/bongOpenPlatform/master/images/mainui.png)
 
 1. 在一个屏幕内展示页面，以减少用户的滑动次数，提高应用的用户体验。
 2. 在页面底部增加反馈方式和更新说明，形式不限，以增进用户和开发者间的交流。
