@@ -1,5 +1,5 @@
 ###说明
-这个接口用于向用户发送通知，目前只适用于 iOS。
+这个接口用于向用户发送通知，目前只有安装了 iOS 版的 bong 应用可以收到消息。
 
 ###调用方法：
 调用地址：1/notification/uid?message=message&access_token=token
