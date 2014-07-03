@@ -14,20 +14,9 @@ access_token|认证返回的 token
 
 ```json
 {
-    "code": "200", 
-    "message": "成功标示!", 
-    "value": {
-        "calories": 1593.05, 
-        "steps": 6500, 
-        "distance": 4463.28, 
-        "stillTime": 47460, 
-        "actPoint": 0, 
-        "sleepNum": 0, 
-        "dsNum": 0, 
-        "sleepTimes": 0, 
-        "complete": 1, 
-        "date": "20140503"
-    }
+"code":"200",
+"message":"成功标示!",
+"value":null
 }
 ```
 
