@@ -14,6 +14,9 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 ####授权原理图示
 ![](https://raw.githubusercontent.com/Ginshell/bongOpenPlatform/master/images/auth.png)
 
+####OAuth 2文档和库
+1. [OAuth 2](http://oauth.net/2/)
+
 ###授权过程
 1. [需要向我们提交的资料](docs/signup.md)
 2. [测试和正式环境的地址](docs/address.md)
