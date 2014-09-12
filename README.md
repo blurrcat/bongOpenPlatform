@@ -33,6 +33,7 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 5. [用户头像接口](docs/avatar.md)
 6. [用户资料接口](docs/userinfo.md)
 7. [推送消息接口](docs/notification.md)
+8. [Yes! 键接口]（docs/Yes.md）
 
 ###用户界面规约
 1. [用户界面规约 v0.1](docs/uig.md)
