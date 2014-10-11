@@ -9,8 +9,6 @@
 第一版android SDK 即1.0.0版
 - 获取 Yes! 键 短触、长触事件
 - 获取 传感器三轴数据
-- bong点亮
-- bong震动
 
 ###快速调试
 
@@ -25,8 +23,6 @@
     - 初始化：BongManager.initialize(this);
     - 事件监听：BongManager.turnOnEventListen(dataEventListener, touchEventListener);
     - 停止监听：BongManager.turnOffEventListen();
-    - 震动：BongManager.bongVibrate();
-    - 点灯：BongManager.bongLight();
     - 动态开启传感器监听：BongManager.bongStartSensorOutput();
     - 动态关闭传感器监听：BongManager.bongStopSensorOutput();
 - 3. 其他参见 demo 项目。
