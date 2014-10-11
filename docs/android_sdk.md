@@ -14,7 +14,7 @@
 ###快速集成
 
 - 1. 登记：注册新应用，获取appid（现阶段暂用“common”可略过此步）
-- 2. 下载：SDK开发包，可运行Demo测试。
+- 2. [下载](http://bong.cn/sdk/bong-sdk-1.0.0.zip)：SDK开发包，可运行Demo测试。
 - 3. 集成： 引lib：将开发包里libs文件夹里jar包拷入你项目的libs并引入项目。
 - 4. 使用：
     - 初始化：BongManager.initialize(this);
