@@ -20,7 +20,7 @@ access_token| access token
     "birthday":1985,
     "weight":71.00,
     "height":174.00,
-    "targetSleeptTime":480,
+    "targetSleepTime":480,
     "targetCalorie":2147
   }
 }
