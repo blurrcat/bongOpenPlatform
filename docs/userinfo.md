@@ -33,5 +33,5 @@ gender|性别：1 为男，2 为女
 birthday|生日年份
 weight|体重，单位为kg
 height|身高，单位为cm
-targetSleeptTime|目标睡眠时间，单位分钟
+targetSleepTime|目标睡眠时间，单位分钟
 targetCalorie|目标卡路里消耗，单位千焦
