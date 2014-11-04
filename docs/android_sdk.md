@@ -22,11 +22,18 @@
 ###快速集成
 
 - 1. 集成： 引lib：将开发包里libs文件夹里jar包拷入你项目的libs并引入项目。
-- 2. 使用：
+- 2. 注册： 将下面receiver注册到manifest文件
+-       <receiver android:name="cn.bong.android.sdk.BongDataReceiver">
+            <intent-filter>
+                <!-- 正式发布时需将 "common" 替换为你的appid -->
+                <action android:name="cn.bong.android.action.common"/>
+            </intent-filter>
+        </receiver>
+- 3. 使用：
     - 初始化：BongManager.initialize(this,appId,appKey);正确输入bong.cn分配给你的appid和appkey，否则可能导致异常。
     - 事件监听：BongManager.turnOnEventListen(dataEventListener, touchEventListener);传入一个或两个监听器来获取数据。
     - 停止监听：BongManager.turnOffEventListen();和turnOnEventListen对应，开启后不要忘记在合适时间调用关闭。
     - 动态开启传感器监听：BongManager.bongStartSensorOutput();开启读取传感器数据
     - 动态关闭传感器监听：BongManager.bongStopSensorOutput();关闭传感器数据读取，开启读取后请在合适时间调用关闭。
-- 3. 其他参见 demo 项目。
+- 4. 其他可参见 demo 项目。
 
