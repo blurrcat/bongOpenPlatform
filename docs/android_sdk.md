@@ -32,14 +32,15 @@
         </receiver>
 ```
 - 3. 使用：
-###初始化
+
+####初始化
 ```java
         // 初始化
         BongManager.initialize(this, "appid");
         // 开启 调试模式，打印日志
         BongManager.setDebuged(true);
 ```
-###开启触摸监听
+####开启触摸监听
 ```java
         // 1. 开启 bong 触摸监听 实例 
         BongManager.turnOnTouchEventListen(new TouchEventListener() {
@@ -53,12 +54,12 @@
         });
 ```
 
-###关闭触摸监听
+####关闭触摸监听
 ```java
         // At last. 关闭 bong 触摸监听
         BongManager.turnOffTouchEventListen();
 ```
-###获取用户信息示例 
+####获取用户信息示例 
 ```java
         BongManager.refreshUserInfo(new UserInfoListener() {
             @Override
@@ -68,26 +69,25 @@
             }
         });
 ```
-##注意：下面方法尽在接收到触摸事件后10秒内发出命令方可被bong接受
-###开启传感器示例 
+###注意：下面方法只在接收到触摸事件后10秒内发出命令方可被bong接受
+####开启传感器示例 
 ```java
         BongManager.bongStartSensorOutput(new DataEventListener() {
             @Override
             public void onReceive(DataEvent event) {
-                events.add(event);
-                adapter.notifyDataSetChanged();
+                events.add(();
             }
         });
 ```
-###关闭传感器示例 
+####关闭传感器示例 
 ```java
         BongManager.bongStopSensorOutput();
 ```
-###震动示例  
+####震动示例  
 ```java
          BongManager.bongVibrate();
 ```
-###点亮示例  
+####点亮示例  
 ```java
         BongManager.bongLight();
 ```
