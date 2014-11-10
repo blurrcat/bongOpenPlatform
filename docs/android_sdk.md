@@ -1,7 +1,7 @@
 
 ##无线开放 
 
-###[首页 http://bong.cn/sdk](http://bong.cn/sdk)
+###[首页 http://bong.cn/share](http://bong.cn/share)
 
 ###开放轨迹
 
@@ -9,24 +9,88 @@
 第一版android SDK 即1.0.0版
 - 获取 Yes! 键 短触、长触事件
 - 获取 传感器三轴数据
+- 获取用户、绑定bong信息
 
-直接触摸 Yes! 键：1秒触发短触,3秒以上激活数据模式，可获取三轴原始数（持续200秒）。
+触摸Yes!键大约1秒为短触，3秒为长触，手机也会对应有短、长震动
 
 ###快速调试
 
 - 1. 登记：注册新应用，获取appid（现阶段暂用“common”可略过此步）
-- 2. [下载](http://bong.cn/sdk/bong-sdk-1.0.0.zip)：SDK开发包，可运行Demo测试。
-- 3. 安装开发包里的 SDK专用APK，登录，点击设置里查看“Yes! 键”选项，如果没启用，设置开启。
+- 2. [下载](http://bong.cn/share/sdk/bong-sdk-android.zip)：SDK开发包，可运行Demo测试。
+- 3. 安装开发包里的 SDK专用APK，登录并进入设置里查看“Yes! 键”选项确认开启状态。
 - 4. 至此可以退出app了，运行Demo，触摸Yes!键，可查看事件记录
 
 ###快速集成
 
-- 1. 集成： 引lib：将开发包里libs文件夹里jar包拷入你项目的libs并引入项目。
-- 2. 使用：
-    - 初始化：BongManager.initialize(this,appId,appKey);正确输入bong.cn分配给你的appid和appkey，否则可能导致异常。
-    - 事件监听：BongManager.turnOnEventListen(dataEventListener, touchEventListener);传入一个或两个监听器来获取数据。
-    - 停止监听：BongManager.turnOffEventListen();和turnOnEventListen对应，开启后不要忘记在合适时间调用关闭。
-    - 动态开启传感器监听：BongManager.bongStartSensorOutput();开启读取传感器数据
-    - 动态关闭传感器监听：BongManager.bongStopSensorOutput();关闭传感器数据读取，开启读取后请在合适时间调用关闭。
+- 1. 集成： 将开发包里libs文件夹里jar包拷入你项目的libs文件夹并引入项目。
+- 2. 注册： 将下面receiver注册到你项目的manifest文件
+```xml
+        <receiver android:name="cn.bong.android.sdk.BongDataReceiver">
+            <intent-filter>
+                <action android:name="cn.bong.android.action.common"/>
+            </intent-filter>
+        </receiver>
+```
+- 3. 使用：
+###初始化
+```java
+        // 初始化
+        BongManager.initialize(this, "appid");
+        // 开启 调试模式，打印日志
+        BongManager.setDebuged(true);
+```
+###开启触摸监听
+```java
+        // 1. 开启 bong 触摸监听 实例 
+        BongManager.turnOnTouchEventListen(new TouchEventListener() {
+            @Override
+            public void onTouch(TouchEvent event) {
+            }
+
+            @Override
+            public void onLongTouch(TouchEvent event) {
+            }
+        });
+```
+
+###关闭触摸监听
+```java
+        // At last. 关闭 bong 触摸监听
+        BongManager.turnOffTouchEventListen();
+```
+###获取用户信息示例 
+```java
+        BongManager.refreshUserInfo(new UserInfoListener() {
+            @Override
+            public void onReceive(BongUser bongUser) {
+                // 另外一种获取user的方法
+                // BongUser bongUser = BongManager.getBongUser();
+            }
+        });
+```
+##注意：下面方法尽在接收到触摸事件后10秒内发出命令方可被bong接受
+###开启传感器示例 
+```java
+        BongManager.bongStartSensorOutput(new DataEventListener() {
+            @Override
+            public void onReceive(DataEvent event) {
+                events.add(event);
+                adapter.notifyDataSetChanged();
+            }
+        });
+```
+###关闭传感器示例 
+```java
+        BongManager.bongStopSensorOutput();
+```
+###震动示例  
+```java
+         BongManager.bongVibrate();
+```
+###点亮示例  
+```java
+        BongManager.bongLight();
+```
+
 - 3. 其他参见 demo 项目。
 
