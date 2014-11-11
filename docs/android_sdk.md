@@ -15,8 +15,8 @@
 
 ###快速调试
 
-- 1. 登记：注册新应用，获取appid（现阶段暂用“common”可略过此步）
-- 2. [下载](http://bong.cn/share/sdk/bong-sdk-android.zip)：SDK开发包，可运行Demo测试。
+- 1. [登记](http://bong.cn/share/mobile.html)：注册新应用，获取appid（现阶段暂用“common”可略过此步）
+- 2. [下载](http://bong.cn/share/bong-sdk-android.zip)：SDK开发包，可运行Demo测试。
 - 3. 安装开发包里的 SDK专用APK，登录并进入设置里查看“Yes! 键”选项确认开启状态。
 - 4. 至此可以退出app了，运行Demo，触摸Yes!键，可查看事件记录
 
@@ -61,13 +61,16 @@
 ```
 ####获取用户信息示例 
 ```java
+        // 1. 将会刷新获取最新的用户信息
         BongManager.refreshUserInfo(new UserInfoListener() {
             @Override
             public void onReceive(BongUser bongUser) {
-                // 另外一种获取user的方法
-                // BongUser bongUser = BongManager.getBongUser();
+            
             }
         });
+        
+        // 2. 另外一种获取user的方法：有可能不是最新
+        BongUser bongUser = BongManager.getBongUser();
 ```
 ###注意：下面方法只在接收到触摸事件后10秒内发出命令方可被bong接受
 ####开启传感器示例 
