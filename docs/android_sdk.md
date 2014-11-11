@@ -60,12 +60,12 @@
 
 ####关闭触摸监听
 ```java
-        // At last. 关闭 bong 触摸监听
+        // At last. 关闭 bong 触摸监听（和开启是一对，请注意在合适的时候注销监听防止内存泄露）
         BongManager.turnOffTouchEventListen();
 ```
 ####获取用户信息示例 
 ```java
-        // 1. 将会刷新获取最新的用户信息
+        // 1. 将会刷新获取最新的用户信息（此监听在得到一次反馈后会自动释放，不需要解显式注销监听）
         BongManager.refreshUserInfo(new UserInfoListener() {
             @Override
             public void onReceive(BongUser bongUser) {
@@ -87,6 +87,7 @@
 ```
 ####关闭传感器示例 
 ```java
+        和开启传感器是一对，请注意在合适的时候注销监听防止内存泄露
         BongManager.bongStopSensorOutput();
 ```
 ####震动示例  
