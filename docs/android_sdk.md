@@ -22,6 +22,7 @@
 
 ###快速集成
 
+
 - 1. 集成： 将开发包里libs文件夹里jar包拷入你项目的libs文件夹并引入项目。
 - 2. 注册： 将下面receiver注册到你项目的manifest文件
 ```xml
@@ -34,9 +35,12 @@
 - 3. 使用：
 
 ####初始化
+注意：测试阶段可以使用"common"作为你的appid来快速调试，若发布上线，必须要[申请](http://bong.cn/share/)到专属的appid、key等信息。
 ```java
-        // 初始化
+        // 初始化（目前阶段只需要appid即可）
         BongManager.initialize(this, "appid");
+        // 或者(后续接入api时需要key和secret，且请注意appsecret的保密工作，防止被盗用)
+        BongManager.initialize(this, "appid", "appkey", "appsecret");
         // 开启 调试模式，打印日志
         BongManager.setDebuged(true);
 ```
@@ -78,7 +82,6 @@
         BongManager.bongStartSensorOutput(new DataEventListener() {
             @Override
             public void onReceive(DataEvent event) {
-                events.add(();
             }
         });
 ```
