@@ -39,7 +39,7 @@ stillTime|该日的静坐时间总和，单位是秒。
 sleepNum|总睡眠时长,单位是分钟
 dsNum|深睡眠时长,单位是分钟
 sleepTimes|睡眠次数
-complete|该日数据是否完整。  0:不完整    1:完整
+complete|该日数据是否完整。  0:不完整    1:完整    -1:数据丢失
 date|yyyymmdd,日期。
 
 
