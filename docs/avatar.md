@@ -4,6 +4,7 @@
 图片文件URL的形式返回。
 ###调用方法
 调用地址： 1/userInfo/avatar/img/uid?access_token=access_token
+
 参数|说明
 ---|---
 uid|用户id
@@ -16,6 +17,7 @@ access_token|access token
     "value": "http://bongapptest.qiniudn.com/165.png?e=1418898591&token=t1eeOI6ZlbovsEOAHRnX9glBB79UOKvME5W3XO-a:D3FfvkLHlTIcB-Z7cVsKQECp1MM="
 }
 ```
+
 参数|说明
 ---|---
 value|图片的URL地址
@@ -25,6 +27,7 @@ value|图片的URL地址
 **该接口将不再维护，推荐使用返回图片URL地址的接口。**
 ###调用方法
 调用地址： 1/userInfo/avatar/uid?access_token=access_token
+
 参数|说明
 ---|---
 uid|用户id
@@ -37,6 +40,7 @@ access_token|access token
  "value":""
 }
 ```
+
 参数|说明
 ---|---
 value|base64位编码的图片
