@@ -11,7 +11,7 @@
 #####授权错误码说明
 
 错误码|错误信息|详细描述
----|---|---
+|---|---|---|
 invalid_request|invalid refresh token|请求缺少某个必需参数，包含一个不支持的参数或参数值，或者格式不正确。
 invalid_client|unknown client id|client_id”、“client_secret”参数无效。
 invalid_grant|The provided authorization grant is revoked|提供的Access Grant是无效的、过期的或已撤销的，例如，Authorization Code无效(一个授权码只能使用一次)、Refresh Token无效、redirect_uri与获取Authorization Code时提供的不一致。
