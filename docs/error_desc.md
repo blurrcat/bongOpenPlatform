@@ -6,7 +6,10 @@
 错误码主要分为两种方式:
 *  在授权获取过程中或者接口调用过程中与权限相关的错误。
 *  在接口调用过程中返回的相关错误。
+
+
 #####授权错误码说明
+
 错误码|错误信息|详细描述
 ---|---|---
 invalid_request|invalid refresh token|请求缺少某个必需参数，包含一个不支持的参数或参数值，或者格式不正确。
@@ -17,6 +20,7 @@ unsupported_grant_type|The authorization grant type is not supported|不支持�
 invalid_scope|The requested scope is exceeds the scope granted by the resource owner|请求的“scope”参数是无效的、未知的、格式不正确的、或所请求的权限范围超过了数据拥有者所授予的权限范围。
 expired_token|refresh token has been used|提供的Refresh Token已过期
 redirect_uri_mismatch|Invalid redirect uri|“redirect_uri”所在的根域与申请时根域名不匹配。
+
 #####接口错误码说明
 返回值|说明
 ---|---
