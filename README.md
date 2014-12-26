@@ -41,6 +41,7 @@ bong开放平台为无线应用（移动app）提供各种基础能力和服务�
 6. [用户资料接口](docs/userinfo.md)
 7. [推送消息接口](docs/notification.md)
 8. [Yes! 键接口](docs/Yes.md)
+9. [错误码说明](docs/error_desc.md)
 
 ###用户界面规约
 1. [用户界面规约 v0.1](docs/uig.md)
