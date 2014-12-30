@@ -28,9 +28,9 @@ android SDK 1.1.0版新增：
 ###快速集成
 
 
-- 1. 注册: (http://bong.cn/share/mobile.html)：点击[注册新应用]，获取AppID、AppKey、AppSecret等信息。
+- 1. 注册:  点击[申请创建应用](http://bong.cn/share/mobile.html)，注册并获取AppID、AppKey、AppSecret等信息。
 - 2. 集成： 将开发包里libs文件夹里jar包拷入你项目的libs文件夹并引入项目。
-- 3. 注册： 将下面receiver注册到你项目的manifest文件
+- 3. 注册： 将下面权限等信息注册到你项目的manifest文件。
 
 permission
 ```xml
@@ -51,7 +51,7 @@ application
 - 3. 使用：
 
 ####初始化
-必须要[申请](http://bong.cn/share/)到专属的获取AppID、AppKey、AppSecret等信息。
+必须要到开放平台[申请]申请专属的获取AppID、AppKey、AppSecret等信息。
 ```java
         // 初始化（只接收触摸事件仅需appid即可）
         BongManager.initialize(this, "appid");
@@ -64,7 +64,7 @@ application
 ```
 
 ####释放资源
-必须要[申请](http://bong.cn/share/)到专属的获取AppID、AppKey、AppSecret等信息。
+
 ```java
         // 会释放所有监听者（如果有的话），清空各种数据，释放一切资源，恢复到调用initialize方法前的状态。
         BongManager.releaseAll();
@@ -84,7 +84,13 @@ application
         });
 ```
 
-####调用授权（注意一次授权有效期为3个月，所以注意不要频繁调用，仅当没有授权和授权过期时才调用此方法）
+####关闭触摸监听
+```java
+        // At last. 关闭 bong 触摸监听（和开启是一对，请注意在合适的时候注销监听防止内存泄露）
+        BongManager.turnOffTouchEventListen();
+```
+
+####开启授权（注意一次授权有效期为3个月，所以注意不要频繁调用，仅当没有授权和授权过期时才调用此方法）
 ```java
       // 开启 bong 触摸监听 实例 
       BongManager.bongLogin(this, "demo", new UiListener() {
@@ -102,7 +108,7 @@ application
        });
 ```
 
-####授权相关方法（注意一次授权有效期为3个月，所以不要频繁授权）
+####授权相关方法
 ```java
       // 清除AccessToken和UserID等信息并登出
       BongManager.bongLogout();
@@ -114,11 +120,6 @@ application
       BongManager.getLoginUid();
 ```
 
-####关闭触摸监听
-```java
-        // At last. 关闭 bong 触摸监听（和开启是一对，请注意在合适的时候注销监听防止内存泄露）
-        BongManager.turnOffTouchEventListen();
-```
 ####获取bong app 当前登录用户信息示例 
 ```java
         // 1. 将会刷新获取最新的用户信息（此监听在得到一次反馈后会自动释放，不需要解显式注销监听）
