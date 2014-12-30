@@ -133,7 +133,7 @@ application
         // 2. 另外一种获取user的方法：有可能不是最新
         BongUser bongUser = BongManager.getBongUser();
 ```
-###注意：下面方法只在接收到触摸事件后10秒内发出命令方可被bong接受
+###注意：下面方法只在接收到触摸事件后的短时间内发出命令方可被bong2接受（bong2尽在触摸时发广播包）
 ####开启传感器示例 
 ```java
         BongManager.bongStartSensorOutput(new DataEventListener() {
