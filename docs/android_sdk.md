@@ -11,42 +11,68 @@
 - 获取 传感器三轴数据
 - 获取用户、绑定bong信息
 
-触摸Yes!键大约1秒为短触，3秒为长触，手机也会对应有短、长震动
+android SDK 1.1.0版新增：
+- 授权打通，调用SDK方法可以快速完成授权获取API访问令牌。
+- 环境切换，可以切换线上、预发、测试三个环境
+- 开闭调试模式，日志一键开关
+- 可以云端配置[长、短触]事件啦，借助此项结合长短触，甚至可以不接入SDK来极速启动你的App：可配置是否点亮屏幕、解锁，支持broadcast、activity、service三种intent拉起方式。
+
+触摸Yes!键大约1秒为短触后松开(亮灯一次)，3秒触摸为长触（亮灯两次），[手机]也会对应有短、长震动反馈。
 
 ###快速调试
 
-- 1. [登记](http://bong.cn/share/mobile.html)：注册新应用，获取appid（现阶段暂用“common”可略过此步）
-- 2. [下载](http://bong.cn/share/bong-sdk-android.zip)：SDK开发包，可运行Demo测试。
-- 3. 安装开发包里的 SDK专用APK，登录并进入设置里查看“Yes! 键”选项确认开启状态。
-- 4. 至此可以退出app了，运行Demo，触摸Yes!键，可查看事件记录
+- 1. [下载](http://bong.cn/share/bong-sdk-android.zip)：SDK开发包，可运行Demo测试。
+- 2. 安装开发包里的SDK测试用APK，登录bong app并进入[设置]里查看“Yes! 键”选项确认开启状态。
+- 3. 至此可以退出app了，运行Demo，触摸Yes!键，可查看事件记录
 
 ###快速集成
 
 
-- 1. 集成： 将开发包里libs文件夹里jar包拷入你项目的libs文件夹并引入项目。
-- 2. 注册： 将下面receiver注册到你项目的manifest文件
+- 1. 注册: (http://bong.cn/share/mobile.html)：点击[注册新应用]，获取AppID、AppKey、AppSecret等信息。
+- 2. 集成： 将开发包里libs文件夹里jar包拷入你项目的libs文件夹并引入项目。
+- 3. 注册： 将下面receiver注册到你项目的manifest文件
+
+permission
 ```xml
-        <receiver android:name="cn.bong.android.sdk.BongDataReceiver">
-            <intent-filter>
-                <action android:name="cn.bong.android.action.common"/>
-            </intent-filter>
-        </receiver>
+    <uses-permission android:name="android.permission.INTERNET"/>
+```
+application
+```xml
+    <activity
+            android:name="cn.bong.android.sdk.api.AuthActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+    <receiver android:name="cn.bong.android.sdk.BongDataReceiver">
+        <intent-filter>
+            <action android:name="cn.bong.android.action.common"/>
+        </intent-filter>
+    </receiver>
 ```
 - 3. 使用：
 
 ####初始化
-注意：测试阶段可以使用"common"作为你的appid来快速调试，若发布上线，必须要[申请](http://bong.cn/share/)到专属的appid、key等信息。
+必须要[申请](http://bong.cn/share/)到专属的获取AppID、AppKey、AppSecret等信息。
 ```java
-        // 初始化（目前阶段只需要appid即可）
+        // 初始化（只接收触摸事件仅需appid即可）
         BongManager.initialize(this, "appid");
-        // 或者(后续接入api时需要key和secret，且请注意appsecret的保密工作，防止被盗用)
-        BongManager.initialize(this, "appid", "appkey", "appsecret");
-        // 开启 调试模式，打印日志
+        // 或者(接入api时需要key和secret，且请注意appsecret的保密工作，防止被盗用)
+        BongManager.initialize(this, "appid", "appkey", "appsecret"); 
+        // 开启 调试模式，打印日志（默认关闭）
         BongManager.setDebuged(true);
+        // 设置 环境（默认线上）：Daily（测试）,  PreDeploy（预发，线上数据）, Product（线上）;
+        BongManager.setEnvironment(Environment.Daily);
 ```
+
+####释放资源
+必须要[申请](http://bong.cn/share/)到专属的获取AppID、AppKey、AppSecret等信息。
+```java
+        // 会释放所有监听者（如果有的话），清空各种数据，释放一切资源，恢复到调用initialize方法前的状态。
+        BongManager.releaseAll();
+```
+
 ####开启触摸监听
 ```java
-        // 1. 开启 bong 触摸监听 实例 
+        // 开启 bong 触摸监听 实例 
         BongManager.turnOnTouchEventListen(new TouchEventListener() {
             @Override
             public void onTouch(TouchEvent event) {
@@ -58,12 +84,42 @@
         });
 ```
 
+####调用授权（注意一次授权有效期为3个月，所以注意不要频繁调用，仅当没有授权和授权过期时才调用此方法）
+```java
+      // 开启 bong 触摸监听 实例 
+      BongManager.bongLogin(this, "demo", new UiListener() {
+           @Override
+           public void onError(AuthError error) {
+           }
+
+           @Override
+           public void onSucess(AuthInfo result) {
+           }
+
+           @Override
+           public void onCancel() {
+           }
+       });
+```
+
+####授权相关方法（注意一次授权有效期为3个月，所以不要频繁授权）
+```java
+      // 清除AccessToken和UserID等信息并登出
+      BongManager.bongLogout();
+      // 判断是否有AccessToken和UserID
+      BongManager.isSessionValid();
+      // 获取AccessToken
+      BongManager.getAccessToken();
+      // 获取UserID
+      BongManager.getLoginUid();
+```
+
 ####关闭触摸监听
 ```java
         // At last. 关闭 bong 触摸监听（和开启是一对，请注意在合适的时候注销监听防止内存泄露）
         BongManager.turnOffTouchEventListen();
 ```
-####获取用户信息示例 
+####获取bong app 当前登录用户信息示例 
 ```java
         // 1. 将会刷新获取最新的用户信息（此监听在得到一次反馈后会自动释放，不需要解显式注销监听）
         BongManager.refreshUserInfo(new UserInfoListener() {
