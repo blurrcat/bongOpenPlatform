@@ -102,6 +102,7 @@ application
 ```
 
 ####开启授权（注意一次授权有效期为3个月，所以注意不要频繁调用，仅当没有授权和授权过期时才调用此方法）
+注意SDK初始化时输入你的AppID以及AppKey，测试环境注册一个测试账号，调用下面方法，就能在demo中通过登录来完成授权了。
 ```java
       // 开启 bong 触摸监听 实例 
       BongManager.bongLogin(this, "demo", new UiListener() {
