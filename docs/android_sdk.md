@@ -5,7 +5,7 @@
 
 ###开放轨迹
 
-####1. 2014-10-11 
+####2014-10-11 
 第一版android SDK 即1.0.0版
 - 获取 Yes! 键 短触、长触事件
 - 获取 传感器三轴数据
@@ -24,6 +24,16 @@ android SDK 1.1.0版新增：
 - 1. [下载](http://bong.cn/share/bong-sdk-android.zip)：SDK开发包，可运行Demo测试。
 - 2. 安装开发包里的SDK测试用APK，登录bong app并进入[设置]里查看“Yes! 键”选项确认开启状态。
 - 3. 至此可以退出app了，运行Demo，触摸Yes!键，可查看事件记录
+
+###环境、账号注意事项
+1. [测试环境]和[线上环境]的账号、数据完全独立，交叉登录则会报密码错误或未注册；预发环境（GM）和线上环境账号、数据体系一致，预发环境测试通过后将发布线上。
+- 1. 测试环境：发布前测试专用，线上用户看不到。
+- 2. 预发环境：正式发布前预热专用，没问题即可发到线上，线上用户看不到。
+- 3. 正式环境：发布给线上用户使用。
+  开发者可到[开放平台](http://www.bong.cn/share/mobile.html)下载测试环境的安装包，来自助注册测试账号并在测试环境使用、调测。[点击直接下载](http://bongads.b0.upaiyun.com/bong-sdk-android.zip)
+
+2. 默认最初分配的AppID、AppKey等信息仅对测试环境生效，意味着只能在测试环境授权通过并调测，否则可能报授权失败。
+
 
 ###快速集成
 
@@ -48,7 +58,7 @@ application
         </intent-filter>
     </receiver>
 ```
-- 3. 使用：
+- 4. 使用简介：
 
 ####初始化
 必须要到开放平台[申请]申请专属的获取AppID、AppKey、AppSecret等信息。
@@ -133,7 +143,7 @@ application
         // 2. 另外一种获取user的方法：有可能不是最新
         BongUser bongUser = BongManager.getBongUser();
 ```
-###注意：下面方法只在接收到触摸事件后的短时间内发出命令方可被bong2接受（bong2尽在触摸时发广播包）
+###注意：下面方法只在接收到触摸事件后的短时间内发出命令方可被bong2接受（bong2仅在触摸时发广播包）
 ####开启传感器示例 
 ```java
         BongManager.bongStartSensorOutput(new DataEventListener() {
