@@ -9,4 +9,3 @@
 1. cliend_id
 2. client_secret
 3. sign_key,用于跳转到开发者应用时对请求url进行签名验证
-4. 测试环境的调试帐号
