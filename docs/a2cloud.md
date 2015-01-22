@@ -1,10 +1,12 @@
+# 第三方手环接入指南
+
 本⽂文档内容中提到的接口仅供已经签署了合作协议的公司使用，如果你的手环也想接入全球第一的全自动运动手环算法，请联系Tracy@bong.cn
 
-# 一、活跃点生态接入
+## 一、活跃点生态接入
 需要在您的产品APP中增加活跃点生态，具体流程如下图
 UI部署要求，主要是会有账号绑定（只有在用户使用活跃点时才会要求激活，不影响原生体验）以及活跃点页面（需要在APP中接入活跃点使用界面，并引导到活跃点商品页面）。
 
-## 1 引导账号绑定
+### 1 引导账号绑定
 
 第三方需要有自己的注册账号体系，这个体系的规则bong不会介入，但是需要在注册结束时，引导用户进行一次账号绑定。这里的目的是为了防止用户如果已经是bong的老用户，在激活活跃点时会导致活跃点丢失。
 
@@ -18,7 +20,7 @@ UI部署要求，主要是会有账号绑定（只有在用户使用活跃点时
 
 
 
-## 2 活跃点接入
+### 2 活跃点接入
 第三方APP中需要在自己的APP里展示活跃点相关的信息，包含:
 活跃点总数*
 今日获得活跃点（可选）
@@ -41,22 +43,20 @@ UI部署要求，主要是会有账号绑定（只有在用户使用活跃点时
 
 
 
-二. 算法云API接口（初稿）
-
-算法云API接口（初稿）：
+## 二. 算法云API接口（初稿）
 
 说明：本文档仅限API用户内部阅读，请勿外传。
 第一部分为接入方法。
 第二部分是标准api文档。
 第三部分是sandbox,无验证信息接口，帮助调通数据流。
 
-一 接入方法：
-向xxx@bong.cn提交申请，申请通过后将获得api访问token。具体包含如下：
+### 1.接入方法：
+签署协议后，可向Wenfeng@bong.cn提交申请，申请通过后将获得api访问token。具体包含如下：
 client:字符串,申请时请提交信息，需惟一，建议采用产品名。如bongll
 accessToken:字符串，访问token。
 secretKey:字符串，AES密钥。
 
-二 api接口：
+### 2.api接口：
 测试环境domain:http://open-test.bong.cn/
 线上环境domain:http://open.bong.cn/
 
@@ -83,7 +83,7 @@ String message:处理结果文本
 String data:请求结果内容,Map<String, String>的AES加密结果，可能为空。
 以下接口均只说明参数data加密前map的内容和返回data加密前map的内容。
 
-1.数据上传
+#### 数据上传
 url:{domain}/device/{client}/data/upload/
 参数map:
 “mac”: {mac},//硬件mac地址
@@ -93,7 +93,7 @@ url:{domain}/device/{client}/data/upload/
 结果map:
 空
 
-2.结构数据下载
+#### 结构数据下载
 url:{domain}/device/{client}/data/getBlocks/
 参数map:
 “mac”: {mac},//硬件mac地址
@@ -105,7 +105,7 @@ url:{domain}/device/{client}/data/getBlocks/
 "blocks”{list{block结构son串}}.
 具体结构请参阅：https://github.com/Ginshell/bongOpenPlatform
 
-3.请求该用户设备最后一次同步的数据时间
+#### 请求该用户设备最后一次同步的数据时间
 url:{domain}/device/{client}/data/uploadTime/
 参数map:
 “mac”: {mac}.//硬件mac地址
@@ -114,7 +114,7 @@ url:{domain}/device/{client}/data/uploadTime/
 结果map:
 “time”:{time}.//unix时间戳,单位毫秒。
 
-4.用户在算法云端绑定设备，用户没有bong帐号
+#### 用户在算法云端绑定设备，用户没有bong帐号
 url:{domain}/device/{client}/bind/
 参数map:
 “mac”: {mac}.//硬件mac地址
@@ -125,7 +125,7 @@ url:{domain}/device/{client}/bind/
 结果map:
 空
 
-5.用户在算法云端绑定设备，用户拥有bong帐号。通过bong Oauth开放平台接口获取用户uid
+#### 用户在算法云端绑定设备，用户拥有bong帐号。通过bong Oauth开放平台接口获取用户uid
 url:{domain}/device/{client}/bindWithAccount/
 参数map:
 “mac”: {mac}.//硬件mac地址
@@ -135,7 +135,7 @@ url:{domain}/device/{client}/bindWithAccount/
 结果map:
 空
 
-6.用户在算法云端解绑设备
+#### 用户在算法云端解绑设备
 url:{domain}/device/{client}/unbind/
 参数map:
 “mac”: {mac}.//硬件mac地址
@@ -144,7 +144,7 @@ url:{domain}/device/{client}/unbind/
 结果map:
 空
 
-7.获取bong用户活跃点，总活跃点和指定日期获得的活跃点
+#### 获取bong用户活跃点，总活跃点和指定日期获得的活跃点
 url:{domain}/device/{client}/ap/
 参数map:
 “mac”: {mac}.//硬件mac地址
@@ -154,9 +154,9 @@ url:{domain}/device/{client}/ap/
 "total”:{数字类型},//用户总活跃点
 "date”{数字类型}.//选定日期内获取的活跃点
 
-三 Sandbox环境：
+### 3.Sandbox环境：
 为方便第三方尽快打通数据流，我们在测试环境部署sandbox接口。sandbox接口全部采用无验证get请求。具体接口如下：
-1.数据上传，用于只验证接口连接性，bong将不接受实际数据。
+#### 数据上传，用于只验证接口连接性，bong将不接受实际数据。
 http://open-test.bong.cn/device/data/upload?mac=E69EB2618485&deviceId=1&data=bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155
 参数：
 mac:硬件mac地址
@@ -169,8 +169,7 @@ message: "上传成功",
 data: null
 }
 
-2.
-结构数据下载
+#### 结构数据下载
 http://open-test.bong.cn/device/data/getBlocks?mac=E69EB2618485&deviceId=1&date=2014-11-21
 参数：
 date:yyyy-mm-dd格式日期
@@ -182,8 +181,7 @@ data: "{"sum":{"deviceId":1,"userId":2,"date":1416499200000,"calories":0.0,"step
 }
 具体含义请参考：https://github.com/Ginshell/bongOpenPlatform
 
-3.
-请求该用户设备最后一次同步的数据时间
+#### 请求该用户设备最后一次同步的数据时间
 http://open-test.bong.cn//device/data/uploadTime?mac=E69EB2618485&deviceId=1
 参数如上：
 结果示例：
@@ -192,9 +190,9 @@ code: "0",
 message: "请求成功",
 data: "{"time":1416550080000}"
 }
-三. 固件SDK植入（初稿）：
+## 固件SDK植入（初稿）：
 
-第三⽅方⼿手环需要根据硬件⽂文档的指导,将算法嵌⼊入⾃自⼰己的固件 
+第三⽅方⼿手环需要根据硬件⽂文档的指导,将算法嵌⼊入⾃自⼰己的固件,需要签署协议后获得。
 - 注:此部分为bong已申请发明级专利,需要签署保密协议和专利使⽤用协议。 
 1、执⾏行代码以函数库 lib ⽅方式提供。
 2、所有函数为线性执⾏行,不会存在死循环,造成系统卡死。
