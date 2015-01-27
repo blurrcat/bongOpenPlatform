@@ -69,8 +69,9 @@ String token。
 data:为Map<String,String>的json字符串。具体map内容详见各接口。该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
 sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按自然顺序顺序。32位md5。
 token:访问token的AES加密结果。密钥secretKey。
-bong采用jncryptor-1.2.0 AES加密库。
-Maven依赖如下：
+bong采用jncryptor-1.2.0 AES加密库。地址如下：
+https://github.com/RNCryptor
+Maven依赖：
 <dependency>
 	<groupId>org.cryptonode.jncryptor</groupId>
 	<artifactId>jncryptor</artifactId>
