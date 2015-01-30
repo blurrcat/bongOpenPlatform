@@ -7,7 +7,7 @@ bong iOS SDK 是 [bong 智能手环](http://bong.cn) [开放平台](http://bong.
 - [x] 获取 bongII 的长按、短按广播 
 - [x] 同步 bongII 的手环数据并上传至 bong 服务器
 
-[bong iOS SDK Reference](ios-sdk-html/index.html)
+[bong iOS SDK Reference](http://www.bong.cn/share/ios-sdk-html/index.html)
 
 ## 开发环境
 
