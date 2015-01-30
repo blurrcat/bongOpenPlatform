@@ -11,7 +11,7 @@ bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手
 
 ###bong无线开放平台
 ####[android SDK 文档](docs/android_sdk.md)
-####[ios SDK 文档](docs/ios_sdk.md)
+####[iOS SDK 文档](docs/ios_sdk.md)
 
 bong开放平台为无线应用（移动app）提供各种基础能力和服务，以让app开发者快速、低成本和bong互通：
 
