@@ -20,6 +20,8 @@ subType返回值|对应运动|说明
 2|健走|强度稍高。
 3|运动|球类等运动。
 4|跑步|有氧跑步运动。
+5|游泳|游泳等水中运动。
+6|自行车|骑车等。
 #####非bong（相对静止态），type为3，subType返回值为1-2：
 非bong下共有2个子状态：
 
@@ -27,26 +29,25 @@ subType返回值|对应运动|说明
 ---|---|---
 1|静坐|例如坐在椅子上办公。
 2|散步|速度相当于走路。
-
-
+3|交通工具|开车、乘公交等快速交通工具。
 
 ###调用方法
 
 #####正常调用 
-地址：/1/bongday/blocks/yyyymmdd?uid=uid&access_token=token_get_from_oauth
+地址：/1/bongday/blocks/yyyyMMdd?uid=uid&access_token=token_get_from_oauth
 
 参数|说明
 ---|---
-yyyymmdd|查询的那一日，例子 20140101
+yyyyMMdd|查询的那一日，例子 20140101
 uid|认证中返回的 uid
 access_token|认证中返回的 token
 
 #####jsonp 调用 
-地址： /1/bongday/blocks/yyyymmdd/jsonp?uid=uid&callback=func_name&access_token=token_get_from_oauth
+地址： /1/bongday/blocks/yyyyMMdd/jsonp?uid=uid&callback=func_name&access_token=token_get_from_oauth
 
 参数|说明
 ---|---
-yyyymmdd|同上
+yyyyMMdd|同上
 uid|同上
 callback|回调函数名
 access_token|同上
@@ -146,10 +147,10 @@ score|睡眠质量评分
 ### 获取多日数据（最多7日）
 
 #####正常调用
-地址 1/bongday/blocks/yyyymmdd/n?uid=uid&access_token=access_token
+地址 1/bongday/blocks/yyyyMMdd/n?uid=uid&access_token=access_token
 #####jsonp 调用
-地址 1/bongday/blocks/yyyymmdd/n/jsonp?uid=uid&access_token=access_token
+地址 1/bongday/blocks/yyyyMMdd/n/jsonp?uid=uid&access_token=access_token
 
 #####说明
-yyyymmmdd: 起始日期。例子：20140313
+yyyyMMdd: 起始日期。例子：20140313
 n: 从起始日期开始的天书。例子：7
