@@ -13,11 +13,13 @@
 - secretKey:字符串，AES密钥。
 
 ## 二 api接口：
-测试环境domain:http://open-test.bong.cn/
-线上环境domain:http://open.bong.cn/
+
+- 测试环境domain:http://open-test.bong.cn/
+- 线上环境domain:http://open.bong.cn/
 
 ### http请求说明：
 所有请求均为http post方式，参数以http body形式发送。
+
 application/json格式，也就是注意 ：http header中"Content-Type"的值为"application/json; charset=UTF-8" 。
 
 ### 参数说明：
@@ -35,7 +37,9 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
 
 ###注意：
 - 将JNCryptor 的迭代次数设置为100：JNCryptor cryptor = new AES256JNCryptor(100);
-- sign中params的key是指data参数中的key。例如假设 client="here"; 以上传数据接口为例，data参数的mapJson为：
+- sign中params的key是指data参数中的key。例如假设 client="here"; 以上传数据接口为例，data参数的map json为：
+
+mapJson：
 ```json
 {
     "mac":"",
@@ -45,9 +49,9 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
 ```
 那么：
 ```java
-    String token = AES.encode(accessToken);
+    String token = cryptor.encryptData(accessToken);
+    String data = cryptor.encryptData(mapJson);
     String sign = MD5.encode("heremac.pipemac.rawDatahere");
-    String data = AES.encode(mapJson);
 }
 ```
 
