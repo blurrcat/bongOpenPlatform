@@ -24,29 +24,30 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
 参数统一如下格式：
 ```json
 {
-    "sign":"加密串",
     "token":"加密串",
-    "data":"加密串"
+    "data":"加密串",
+    "sign":"加密串"
 }
 ```
-- sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按**字母升序**排列。32位md5。
 - token:访问token的AES加密结果。密钥secretKey。
-- data:为Map<String,String>转化为json字符串。**具体map内容详见【各接口参数说明】**，该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
+- data:为Map<String,String>转化为json字符串。具体map内容详见**【各接口参数说明】**，该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
+- sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按**字母升序**排列。32位md5。
 
-例如:
-```java
-    String client="here";
-    String sign = MD5.encode("here.data.token.data.here");
-    String token = AES.encode(accessToken);
-    String data = AES.encode(mapJson);
-}
-```
-String mapJson:
+###注意：
+- 将JNCryptor 的迭代次数设置为100：JNCryptor cryptor = new AES256JNCryptor(100);
+- sign中params的key是指data参数中的key。例如假设 client="here"; 以上传数据接口为例，data参数的mapJson为：
 ```json
 {
-    "mac":"B62BC687C3E3",
-    "pipemac":"B62BC687C3E4",
-    "rawData":"bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155 "
+    "mac":"",
+    "pipemac":"",
+    "rawData":""
+}
+```
+那么：
+```java
+    String token = AES.encode(accessToken);
+    String sign = MD5.encode("heremac.pipemac.rawDatahere");
+    String data = AES.encode(mapJson);
 }
 ```
 
