@@ -42,9 +42,9 @@ String data:请求结果内容,Map<String, String>的AES加密结果，可能为
 ### 1.数据上传
 url:{domain}/device/{client}/bongll/data/upload/
 参数map:
-“mac”: {mac},//硬件mac地址
-"rawData”:{rawData}.//16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。
-“pipemac”:{pipemac}//管道设备MAC
+“mac”: {mac},//硬件mac地址，示例:B62BC687C3E3
+"rawData”:{rawData}.//16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。示例:bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155
+“pipemac”:{pipemac}//管道设备MAC,示例:B62BC687C3E4
 
 结果map:
 空
@@ -53,7 +53,7 @@ url:{domain}/device/{client}/bongll/data/upload/
 url:{domain}/device/{client}/bongll/data/getBlocks/
 参数map:
 “mac”: {mac},//硬件mac地址
-“date”: {date}.//yyyy-mm-dd格式日期
+“date”: {date}.//yyyy-mm-dd格式日期,示例:2015-01-01
 “pipemac”:{pipemac}//管道设备MAC
 
 结果map:
