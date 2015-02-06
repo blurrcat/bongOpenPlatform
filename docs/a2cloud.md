@@ -87,8 +87,8 @@ String data:请求结果内容,Map<String, String>的AES加密结果，可能为
 #### 数据上传
 url:{domain}/device/{client}/data/upload/
 参数map:
-“mac”: {mac},//硬件mac地址
-"rawData”:{rawData}.//16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。
+“mac”: {mac},//硬件mac地址，示例:B62BC687C3E3 
+"rawData”:{rawData}.//16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。示例:bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155
 “clientUserId”:{clientUserId}//用户在三方设备商惟一标识符，数据类型
 
 结果map:
