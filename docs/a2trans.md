@@ -8,9 +8,9 @@
 
 ## 一 接入方法：
 向Wenfeng@bong.cn提交申请，申请通过后将获得api访问token。具体包含如下：
-client:字符串,申请时请提交信息，需惟一，建议采用产品名。如bongll
-accessToken:字符串，访问token。
-secretKey:字符串，AES密钥。
+- client:字符串,申请时请提交信息，需惟一，建议采用产品名。如bongll
+- accessToken:字符串，访问token。
+- secretKey:字符串，AES密钥。
 
 ## 二 api接口：
 测试环境domain:http://open-test.bong.cn/
@@ -29,9 +29,9 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
     "data":"加密串"
 }
 ```
-sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按自然顺序顺序。32位md5。
-token:访问token的AES加密结果。密钥secretKey。
-data:为Map<String,String>转化为json字符串。**具体map内容详见各接口**，该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
+- sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按自然顺序顺序。32位md5。
+- token:访问token的AES加密结果。密钥secretKey。
+- data:为Map<String,String>转化为json字符串。**具体map内容详见【各接口参数说明】**，该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
 
 ### 加密说明：
 bong采用jncryptor-1.2.0 AES加密库。地址如下：
@@ -49,12 +49,13 @@ Maven依赖：
 String code:请求结果代码
 String message:处理结果文本
 String data:请求结果内容,Map<String, String>的AES加密结果，可能为空。
-以下接口均只说明参数data加密前map的内容和返回data加密前map的内容。
 
-### 1.数据上传
+### 各接口参数说明：
+以下接口均只说明参数data加密前map的内容和返回data加密前map的内容。
+#### 1.数据上传
 url:{domain}/device/{client}/bongll/data/upload/
 
-data参数为：对指定map的json串进行AES加密，mac json示例:
+data参数为：对指定map的json串进行AES加密，map json示例:
 ```xml
 {
     "mac":"B62BC687C3E3",
@@ -72,7 +73,7 @@ data参数为：对指定map的json串进行AES加密，mac json示例:
 
 结果map:空
 
-### 2.结构数据下载
+#### 2.结构数据下载
 url:{domain}/device/{client}/bongll/data/getBlocks/
 
 参数map:
@@ -85,7 +86,7 @@ url:{domain}/device/{client}/bongll/data/getBlocks/
 - "blocks"{list{block结构son串}}.
 具体结构请参阅：https://github.com/Ginshell/bongOpenPlatform
 
-### 3.请求该用户设备最后一次同步的数据时间
+#### 3.请求该用户设备最后一次同步的数据时间
 url:{domain}/device/{client}/bongll/data/uploadTime/
 
 参数map:
@@ -95,7 +96,7 @@ url:{domain}/device/{client}/bongll/data/uploadTime/
 结果map:
 - "time":{time}.//unix时间戳,单位毫秒。
 
-### 4.获取bong用户活跃点，总活跃点和指定日期获得的活跃点
+#### 4.获取bong用户活跃点，总活跃点和指定日期获得的活跃点
 url:{domain}/device/{client}/bongll/ap/
 
 data参数map:

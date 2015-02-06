@@ -46,82 +46,105 @@ UI部署要求，主要是会有账号绑定（只有在用户使用活跃点时
 ## 二. 算法云API接口（初稿）
 
 说明：本文档仅限API用户内部阅读，请勿外传。
-第一部分为接入方法。
-第二部分是标准api文档。
-第三部分是sandbox,无验证信息接口，帮助调通数据流。
+- 第一部分为接入方法。
+- 第二部分是标准api文档。
+- 第三部分是sandbox,无验证信息接口，帮助调通数据流。
 
 ### 1.接入方法：
 签署协议后，可向Wenfeng@bong.cn提交申请，申请通过后将获得api访问token。具体包含如下：
-client:字符串,申请时请提交信息，需惟一，建议采用产品名。如bongll
-accessToken:字符串，访问token。
-secretKey:字符串，AES密钥。
+- client:字符串,申请时请提交信息，需惟一，建议采用产品名。如bongll
+- accessToken:字符串，访问token。
+- secretKey:字符串，AES密钥。
 
 ### 2.api接口：
 测试环境domain:http://open-test.bong.cn/
 线上环境domain:http://open.bong.cn/
 
-所有请求均为http post方式，application/json格式，参数统一如下格式：
-String data,
-String sign,
-String token。
+### http请求说明：
+所有请求均为http post方式，参数以http body形式发送。
+application/json格式，也就是注意 ：http header中"Content-Type"的值为"application/json; charset=UTF-8" 。
 
-说明：
-data:为Map<String,String>的json字符串。具体map内容详见各接口。该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
-sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按自然顺序顺序。32位md5。
-token:访问token的AES加密结果。密钥secretKey。
+### 参数说明：
+参数统一如下格式：
+```xml
+{
+    "sign":"加密串",
+    "token":"加密串",
+    "data":"加密串"
+}
+```
+- sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按自然顺序顺序。32位md5。
+- token:访问token的AES加密结果。密钥secretKey。
+- data:为Map<String,String>转化为json字符串。**具体map内容详见【各接口参数说明】**，该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
+
+### 加密说明：
 bong采用jncryptor-1.2.0 AES加密库。地址如下：
 https://github.com/RNCryptor
 Maven依赖：
+```xml
 <dependency>
 	<groupId>org.cryptonode.jncryptor</groupId>
 	<artifactId>jncryptor</artifactId>
 	<version>1.2.0</version>
 </dependency>
+```
 
-返回json说明：
+### 返回结果说明：
 String code:请求结果代码
 String message:处理结果文本
 String data:请求结果内容,Map<String, String>的AES加密结果，可能为空。
-以下接口均只说明参数data加密前map的内容和返回data加密前map的内容。
+
+### 各接口参数说明：
+以下接口均只说明参数data加密前map的内容，和返回data加密前map的内容。
 
 #### 数据上传
 url:{domain}/device/{client}/data/upload/
-参数map:
-“mac”: {mac},//硬件mac地址，示例:B62BC687C3E3 
-"rawData”:{rawData}.//16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。示例:bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155
-“clientUserId”:{clientUserId}//用户在三方设备商惟一标识符，数据类型
+data参数为：对指定map的json串进行AES加密，map json示例:
+```xml
+{
+    "mac":"B62BC687C3E3",
+    "pipemac":"B62BC687C3E4",
+    "rawData":"bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155 "
+}
+```
 
-结果map:
-空
+参数map：
+
+- "mac": {mac},//硬件mac地址，示例:B62BC687C3E3
+- "pipemac":{pipemac}//管道设备MAC,示例:B62BC687C3E4
+- "rawData":{rawData}.//16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔。
+数据条数不超过500条，超过请分批上传。示例:bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155
+
+结果map:空
 
 #### 结构数据下载
 url:{domain}/device/{client}/data/getBlocks/
 参数map:
-“mac”: {mac},//硬件mac地址
-“date”: {date}.//yyyy-mm-dd格式日期
-“clientUserId”:{clientUserId}//用户在三方设备商惟一标识符，数据类型
+- “mac”: {mac},//硬件mac地址
+- “date”: {date}.//yyyy-mm-dd格式日期
+- “clientUserId”:{clientUserId}//用户在三方设备商惟一标识符，数据类型
 
 结果map:
-"sum”:{sum结构json串},
-"blocks”{list{block结构son串}}.
+- "sum”:{sum结构json串},
+- "blocks”{list{block结构son串}}.
 具体结构请参阅：https://github.com/Ginshell/bongOpenPlatform
 
 #### 请求该用户设备最后一次同步的数据时间
 url:{domain}/device/{client}/data/uploadTime/
 参数map:
-“mac”: {mac}.//硬件mac地址
-“clientUserId”:{clientUserId}//用户在三方设备商惟一标识符，数据类型
+- “mac”: {mac}.//硬件mac地址
+- “clientUserId”:{clientUserId}//用户在三方设备商惟一标识符，数据类型
 
 结果map:
-“time”:{time}.//unix时间戳,单位毫秒。
+- “time”:{time}.//unix时间戳,单位毫秒。
 
 #### 用户在算法云端绑定设备，用户没有bong帐号
 url:{domain}/device/{client}/bind/
 参数map:
-“mac”: {mac}.//硬件mac地址
-“clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
-“gender”:{gender}.//1男，2女
-“height“:{height}.//数字类型，单位厘米
+- “mac”: {mac}.//硬件mac地址
+- “clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
+- “gender”:{gender}.//1男，2女
+- “height“:{height}.//数字类型，单位厘米
 
 结果map:
 空
@@ -129,9 +152,9 @@ url:{domain}/device/{client}/bind/
 #### 用户在算法云端绑定设备，用户拥有bong帐号。通过bong Oauth开放平台接口获取用户uid
 url:{domain}/device/{client}/bindWithAccount/
 参数map:
-“mac”: {mac}.//硬件mac地址
-“clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
-“uid”:{uid}//用户在bong的惟一标识符
+- “mac”: {mac}.//硬件mac地址
+- “clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
+- “uid”:{uid}//用户在bong的惟一标识符
 
 结果map:
 空
@@ -139,8 +162,8 @@ url:{domain}/device/{client}/bindWithAccount/
 #### 用户在算法云端解绑设备
 url:{domain}/device/{client}/unbind/
 参数map:
-“mac”: {mac}.//硬件mac地址
-“clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
+- “mac”: {mac}.//硬件mac地址
+- “clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
 
 结果map:
 空
@@ -148,26 +171,26 @@ url:{domain}/device/{client}/unbind/
 #### 获取bong用户活跃点，总活跃点和指定日期获得的活跃点
 url:{domain}/device/{client}/ap/
 参数map:
-“mac”: {mac}.//硬件mac地址
-“clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
-“date”:{yyyy-mm-dd}.//可选参数，不填则使用当前日期
+- “mac”: {mac}.//硬件mac地址
+- “clientUserId”: {clientUserId}.//用户在第三方设备商惟一标识符，数字类型
+- “date”:{yyyy-mm-dd}.//可选参数，不填则使用当前日期
 结果map:
-"total”:{数字类型},//用户总活跃点
-"date”{数字类型}.//选定日期内获取的活跃点
+- "total”:{数字类型},//用户总活跃点
+- "date”{数字类型}.//选定日期内获取的活跃点
 
 ### 3.Sandbox环境：
 为方便第三方尽快打通数据流，我们在测试环境部署sandbox接口。sandbox接口全部采用无验证get请求。具体接口如下：
 #### 数据上传，用于只验证接口连接性，bong将不接受实际数据。
 http://open-test.bong.cn/device/data/upload?mac=E69EB2618485&deviceId=1&data=bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155
 参数：
-mac:硬件mac地址
-deviceId:合作方设备Id号，由bong分配
-data:16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。
+- mac:硬件mac地址
+- deviceId:合作方设备Id号，由bong分配
+- data:16进制原始数据字符串，按硬件接口文档格式给出，每条数据中间由,分隔.数据条数不超过500条，超过请分批上传。
 结果示例：
 {
-code: "0",
-message: "上传成功",
-data: null
+- code: "0",
+- message: "上传成功",
+- data: null
 }
 
 #### 结构数据下载
@@ -175,31 +198,36 @@ http://open-test.bong.cn/device/data/getBlocks?mac=E69EB2618485&deviceId=1&date=
 参数：
 date:yyyy-mm-dd格式日期
 结果示例：
+```xml
 {
-code: "0",
-message: "请求成功",
-data: "{"sum":{"deviceId":1,"userId":2,"date":1416499200000,"calories":0.0,"step":0,"distance":0.0,"stillTime":120,"sleepNum":0,"dsNum":0,"sleepTimes":0,"finishFlag":1,"modifyTime":1420441906000},"blocks":[{"deviceId":1,"userId":2,"date":1416499200000,"startTime":1416550020000,"endTime":1416550080000,"type":3,"subType":1,"calories":0.0,"step":0,"distance":0.0,"actTime":0,"nonActTime":120,"values":[0,0,0,0],"isGps":0,"speed":0.0}]}"
+    code: "0",
+    message: "请求成功",
+    data: "{"sum":{"deviceId":1,"userId":2,"date":1416499200000,"calories":0.0,"step":0,"distance":0.0,"stillTime":120,"sleepNum":0,"dsNum":0,"sleepTimes":0,"finishFlag":1,"modifyTime":1420441906000},"blocks":[{"deviceId":1,"userId":2,"date":1416499200000,"startTime":1416550020000,"endTime":1416550080000,"type":3,"subType":1,"calories":0.0,"step":0,"distance":0.0,"actTime":0,"nonActTime":120,"values":[0,0,0,0],"isGps":0,"speed":0.0}]}"
 }
+```
 具体含义请参考：https://github.com/Ginshell/bongOpenPlatform
 
 #### 请求该用户设备最后一次同步的数据时间
 http://open-test.bong.cn//device/data/uploadTime?mac=E69EB2618485&deviceId=1
 参数如上：
 结果示例：
+```xml
 {
-code: "0",
-message: "请求成功",
-data: "{"time":1416550080000}"
+    code: "0",
+    message: "请求成功",
+    data: "{"time":1416550080000}"
 }
+```
 ## 固件SDK植入（初稿）：
 
 第三⽅方⼿手环需要根据硬件⽂文档的指导,将算法嵌⼊入⾃自⼰己的固件,需要签署协议后获得。
 - 注:此部分为bong已申请发明级专利,需要签署保密协议和专利使⽤用协议。 
-1、执⾏行代码以函数库 lib ⽅方式提供。
-2、所有函数为线性执⾏行,不会存在死循环,造成系统卡死。
-3、所有涉及到算法的数据、函数以“bong_”开头,以作区分。
-4、采样范围 4g。 
-5、加速计采样率 25Hz,采样后的数据为 8bits 有符号整型。 
-6、每秒定时传⼊入 1 次采⽤用数据,即每秒 25 个数据。 7、算法计算结果为 16 个 8bits 数据。 8、计算结果存储在 Flash,通过 app 上传服务器,服务器返回运动类型。 
+
+- 1、执⾏行代码以函数库 lib ⽅方式提供。
+- 2、所有函数为线性执⾏行,不会存在死循环,造成系统卡死。
+- 3、所有涉及到算法的数据、函数以“bong_”开头,以作区分。
+- 4、采样范围 4g。 
+- 5、加速计采样率 25Hz,采样后的数据为 8bits 有符号整型。 
+- 6、每秒定时传⼊入 1 次采⽤用数据,即每秒 25 个数据。 7、算法计算结果为 16 个 8bits 数据。 8、计算结果存储在 Flash,通过 app 上传服务器,服务器返回运动类型。 
 
 具体参考附件中硬件资料:  bong_open_v1.01.zip 
