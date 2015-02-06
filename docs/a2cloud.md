@@ -66,7 +66,7 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
 
 ### 参数说明：
 参数统一如下格式：
-```xml
+```json
 {
     "sign":"加密串",
     "token":"加密串",
@@ -100,7 +100,7 @@ String data:请求结果内容,Map<String, String>的AES加密结果，可能为
 #### 数据上传
 url:{domain}/device/{client}/data/upload/
 data参数为：对指定map的json串进行AES加密，map json示例:
-```xml
+```json
 {
     "mac":"B62BC687C3E3",
     "pipemac":"B62BC687C3E4",
@@ -198,7 +198,7 @@ http://open-test.bong.cn/device/data/getBlocks?mac=E69EB2618485&deviceId=1&date=
 参数：
 date:yyyy-mm-dd格式日期
 结果示例：
-```xml
+```json
 {
     code: "0",
     message: "请求成功",
@@ -211,7 +211,7 @@ date:yyyy-mm-dd格式日期
 http://open-test.bong.cn//device/data/uploadTime?mac=E69EB2618485&deviceId=1
 参数如上：
 结果示例：
-```xml
+```json
 {
     code: "0",
     message: "请求成功",

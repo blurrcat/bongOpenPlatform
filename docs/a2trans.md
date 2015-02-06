@@ -22,16 +22,33 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
 
 ### 参数说明：
 参数统一如下格式：
-```xml
+```json
 {
     "sign":"加密串",
     "token":"加密串",
     "data":"加密串"
 }
 ```
-- sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按自然顺序顺序。32位md5。
+- sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按**字母升序**排列。32位md5。
 - token:访问token的AES加密结果。密钥secretKey。
 - data:为Map<String,String>转化为json字符串。**具体map内容详见【各接口参数说明】**，该字段为AES算法对json字符串加密结果，密钥secretKey为256字节。
+
+例如:
+```java
+    String client="here";
+    String sign = MD5.encode("here.data.token.data.here");
+    String token = AES.encode(accessToken);
+    String data = AES.encode(mapJson);
+}
+```
+String mapJson:
+```json
+{
+    "mac":"B62BC687C3E3",
+    "pipemac":"B62BC687C3E4",
+    "rawData":"bab880e0e8000000c140000001410141,bab820e0d0c00000a1c4000001490155 "
+}
+```
 
 ### 加密说明：
 bong采用jncryptor-1.2.0 AES加密库。地址如下：
@@ -56,7 +73,7 @@ String data:请求结果内容,Map<String, String>的AES加密结果，可能为
 url:{domain}/device/{client}/bongll/data/upload/
 
 data参数为：对指定map的json串进行AES加密，map json示例:
-```xml
+```json
 {
     "mac":"B62BC687C3E3",
     "pipemac":"B62BC687C3E4",
