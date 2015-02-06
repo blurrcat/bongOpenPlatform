@@ -1,6 +1,6 @@
 # 数据管道API接口（初稿）
 
-说明：本文档仅限API用户内部阅读，请勿外传。
+说明：本文档仅限API用户内部阅读，请勿外传。请仔细看文档，尤其标注“注意”的细节。
 
 第一部分为接入方法。
 
@@ -36,6 +36,7 @@ application/json格式，也就是注意 ：http header中"Content-Type"的值�
 - sign:数据签名。具体算法为md5({client} + '.'.join(params.keys()) + {client})。params.keys()按**字母升序**排列。32位md5。
 
 ###注意：
+- 参数中涉及mac的，全部大写字母，且不带":"间隔。
 - 将JNCryptor 的迭代次数设置为100：JNCryptor cryptor = new AES256JNCryptor(100);
 - sign中params的key是指data参数中的key。例如假设 client="here"; 以上传数据接口为例，data参数的map json为：
 
@@ -49,8 +50,8 @@ mapJson：
 ```
 那么：
 ```java
-    String token = cryptor.encryptData(accessToken);
-    String data = cryptor.encryptData(mapJson);
+    String token = Hex.encodeHexString(cryptor.encryptData(accessToken.getBytes(), secretKey.toCharArray()));
+    String data =  Hex.encodeHexString(cryptor.encryptData(mapJson.getBytes(), secretKey.toCharArray()));
     String sign = MD5.encode("heremac.pipemac.rawDatahere");
 }
 ```
