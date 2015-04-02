@@ -7,7 +7,14 @@
 - **如果你有一款硬件希望和bong支持的腕部设备进行互动，请查看[《bong第三方硬件设备接入》](https://github.com/Ginshell/bongOpenPlatform/blob/master/hardwaredevice.md)**
 
 ###加入开发者计划
-任何对 bong 有兴趣的开发者都可以申请完全免费的开发者计划。加入的办法是在bong.cn/share下载申请表格，发邮件到 <share@bong.cn>，主题写「加入开发者计划」并附上你的申请。经过认证后，即可成为 bong 开放平台的开发者，获得授权开发者头衔，提前享受最新最火热的内测消息。我们更提供创意支持（用户投票的 [bong 原型菜园](http://openbong.lofter.com)），测试用户募集，用户调研，运营支持等全方位免费配套的服务，帮助你在快速成长的 bong 平台上获得成功。
+Step 1: 提交申请 
+任何对 bong 有兴趣的开发者都可以申请完全免费的开发者计划。点此立即[申请成为开发者](http://www.mikecrm.com/f.php?t=5FJFxc)。
+
+Step2：审核
+请耐心等待1-4个工作日。
+
+Step 3：获得token
+经过认证后，即可成为 bong 开放平台的开发者，获得授权开发者头衔，提前享受最新最火热的内测消息。我们更提供创意支持（用户投票的 [bong 原型菜园](http://openbong.lofter.com)），测试用户募集，用户调研，运营支持等全方位免费配套的服务，帮助你在快速成长的 bong 平台上获得成功。
 
 
 ###关于bong
