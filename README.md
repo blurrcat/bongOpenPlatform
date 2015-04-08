@@ -3,7 +3,7 @@
 欢迎你加入 bong 开放平台的大部落，对于每一位开发者我们都倍感珍贵。不需要掌握硬件知识和拥有专业设备，你就可以学习和运用通过传感器全时监测所获得前所未有的海量身体数据，开发出真正把虚拟带入现实的各种有趣应用，并且通过这些应用去改善你所关心的人们的生活。第三方应用将内嵌到 bong iOS 和 Android 软件中，每一位 bong 用户均可以访问到这些应用。
 
 - **此文档适合无线应用和web应用查看**
-- **无线应用**请查看[**android SDK 文档**](docs/android_sdk.md) 和 [**iOS SDK 文档**](docs/ios_sdk.md)
+- **无线应用**请查看[**android SDK 文档**] 和 [**iOS SDK 文档**]
 - **如果你有一款腕部设备希望使用bong的算法，请查看[《bong腕部设备接入》](https://github.com/Ginshell/bongOpenPlatform/blob/master/waistdevice.md)**
 - **如果你有一款硬件希望和bong支持的腕部设备进行互动，请查看[《bong第三方硬件设备接入》](https://github.com/Ginshell/bongOpenPlatform/blob/master/hardwaredevice.md)**
 - 如果你对我们的开发文档**有疑惑**：[请向我们提问](https://github.com/Ginshell/bongOpenPlatform/issues/new)
@@ -24,8 +24,8 @@ Step 3：获得token
 bong 是世界上第一个能够全自动识别你的运动和睡眠状态的手环，只要佩戴在手腕上，无需手动切换识别状态。更重要的是，续航能力长达四周，省去频繁充电的烦恼，而且佩戴无感，不会有卡手的感觉。现在 bong 更进一步，通过开放接口与第三方应用开发者实现合作共赢，帮助你在可穿戴设备的第一波浪潮中抢得先机。
 
 ###bong无线开放平台
-####[android SDK 文档](docs/android_sdk.md)
-####[iOS SDK 文档](docs/ios_sdk.md)
+####[android SDK 文档](https://github.com/Ginshell/bongSDK-android)
+####[iOS SDK 文档](https://github.com/Ginshell/bongSDK-iOS)
 
 bong开放平台为无线应用（移动app）提供各种基础能力和服务，以让app开发者快速、低成本和bong互通：
 
@@ -59,10 +59,10 @@ bong开放平台为无线应用（移动app）提供各种基础能力和服务�
 9. [错误码说明](docs/error_desc.md)
 
 ###调测、账号注意事项
-1. [测试环境]和[线上环境]的账号、数据完全独立，交叉登录则会报密码错误或未注册；开发者可到[开放平台](http://www.bong.cn/share/mobile.html)
+1. [测试环境]和[线上环境]的账号、数据完全独立，交叉登录则会报密码错误或未注册；开发者可到bong[开放平台]
 下载测试环境的安装包，来自助注册测试账号并在测试环境使用、调测。
 2. 默认最初分配的AppID、AppKey等信息仅对测试环境生效，意味着只能在测试环境授权通过并调测，否则可能报授权失败。
-3. 测试完成将要上线时请到[开放平台](http://www.bong.cn/share/mobile.html) ，下载表格发送至share@bong.cn申请上线，通过后线上环境即生效。
+3. 测试完成将要上线时请到[开放平台] 申请APP上线，用户即可使用，通过后线上环境即生效。
 
 ###开发环境
 1. 测试环境：账号、数据与正式环境隔离，测试专用，线上用户看不到。

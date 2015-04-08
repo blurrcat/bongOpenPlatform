@@ -13,18 +13,17 @@
 
 触摸Yes!键大约1秒为短触后松开(亮灯一次)，3秒触摸为长触（亮灯两次），[手机]也会对应有短、长震动反馈。
 
-[旧版android SDK 文档](android_sdk_1.1.0.md)
 
 ###快速调试
 
-- 1. [下载](http://bong.cn/share/bong-sdk-android.zip)：SDK开发包，可运行Demo程序。
+- 1. 下载或clone SDK开发包，可运行Demo程序。
 - 2. 运行后，首先点击“用户授权”，就取到了令牌以及绑定设备信息，即可调试demo。
 
 ###调测、账号注意事项
 1. [测试环境]和[线上环境]的账号、数据完全独立，交叉登录则会报密码错误或未注册；开发者可到[开放平台](http://www.bong.cn/share/mobile.html)
 下载测试环境的安装包，来自助注册测试账号并在测试环境使用、调测。
 2. 默认最初分配的AppID、AppKey等信息仅对测试环境生效，意味着只能在测试环境授权通过并调测，否则可能报授权失败。
-3. 测试完成将要上线时请到[开放平台](http://www.bong.cn/share/mobile.html) ，下载表格发送至share@bong.cn申请上线，通过后线上环境即生效。
+3. 测试完成将要上线时请到bong[开放平台] ，申请应用上线，通过后线上环境即生效。
 
 ###开发环境
 1. 测试环境：账号、数据与正式环境隔离，测试专用，线上用户看不到。
@@ -34,7 +33,7 @@
 ###快速集成
 
 
-- 1. 注册:  点击[申请创建应用](http://bong.cn/share/mobile.html)，注册并获取AppID、AppKey、AppSecret等信息。
+- 1. 注册:  在bong开放平台[申请创建应用]，注册并获取AppID、AppKey、AppSecret等信息。
 - 2. 集成： 将开发包里libs文件夹里jar包拷入你项目的libs文件夹并引入项目。
 - 3. 注册： 将下面权限等信息注册到你项目的manifest文件。
 
@@ -187,6 +186,7 @@ application
      
              @Override
              public void onDataReadInBackground(byte[] data) {
+                // data是一个length为3的数组，data[0]为X轴数据，data[1]为Y轴数据，data[3]为Z轴数据。
              }
          };
 ```
