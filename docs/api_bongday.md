@@ -154,3 +154,74 @@ score|睡眠质量评分
 #####说明
 yyyyMMdd: 起始日期。例子：20140313
 n: 从起始日期开始的天书。例子：7
+
+#####返回数据
+
+```json
+{
+    "code": "200", 
+    "message": "成功标示!", 
+    "value": [
+        {
+            "blockList": [
+                {
+                    "startTime": "2014-04-29 09:40:00", 
+                    "endTime": "2014-04-29 12:20:00", 
+                    "type": 5
+                }, 
+                {
+                    "startTime": "2014-04-29 12:21:00", 
+                    "endTime": "2014-04-29 16:12:00", 
+                    "type": 1, 
+                    "dsNum": 194, 
+                    "lsNum": 38, 
+                    "wakeNum": 0, 
+                    "wakeTimes": 0, 
+                    "score": 2.00
+                }
+            ],
+            "dailySum": {
+                "calories": 0.0,
+                "complete": 0,
+                "date": "20140429",
+                "distance": 0.0,
+                "dsNum": 0,
+                "sleepNum": 232,
+                "sleepTimes": 0,
+                "steps": 0,
+                "stillTime": 0
+            }
+        },
+        {
+            "blockList": [
+                {
+                    "startTime": "2014-04-30 09:40:00", 
+                    "endTime": "2014-04-30 12:20:00", 
+                    "type": 5
+                }, 
+                {
+                    "startTime": "2014-04-30 12:21:00", 
+                    "endTime": "2014-04-30 16:12:00", 
+                    "type": 1, 
+                    "dsNum": 194, 
+                    "lsNum": 38, 
+                    "wakeNum": 0, 
+                    "wakeTimes": 0, 
+                    "score": 2.00
+                }
+            ],
+            "dailySum": {
+                "calories": 0.0,
+                "complete": 0,
+                "date": "20140430",
+                "distance": 0.0,
+                "dsNum": 0,
+                "sleepNum": 232,
+                "sleepTimes": 0,
+                "steps": 0,
+                "stillTime": 0
+            }
+        }
+    ]
+}
+```
